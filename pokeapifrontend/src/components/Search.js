@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 
-export default function Search({setSelectedTypeArray, typeSelectedArray}) {
+export default function Search({setSelectedTypeArray, typeSelectedArray, setPageNo}) {
 
     const [types, setTypes] = useState([]);
 
@@ -14,18 +14,20 @@ export default function Search({setSelectedTypeArray, typeSelectedArray}) {
         fetchTypes();
     }, []);
 
+
     function handleClick(e) {
         const {value, checked} = e.target;
         if (checked) {
+            setPageNo(1);
             setSelectedTypeArray(typeSelectedArray => [...typeSelectedArray, value]);
         }
         else {
             setSelectedTypeArray(typeSelectedArray => typeSelectedArray.filter(type => type !== value));
-        }
+        }   
     }
 
   return (
-    <div>
+    <div className="searchContainer">
        {
          types.map(type => <div key={type}>
             <input 

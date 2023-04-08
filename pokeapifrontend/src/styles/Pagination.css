@@ -1,0 +1,13 @@
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+button {
+    border: none;
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
