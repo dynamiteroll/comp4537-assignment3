@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react';
+import "../styles/Search.css"
 
 export default function Search({setSelectedTypeArray, typeSelectedArray, setPageNo}) {
 
@@ -31,6 +32,7 @@ export default function Search({setSelectedTypeArray, typeSelectedArray, setPage
        {
          types.map(type => <div key={type}>
             <input 
+            className='checkbox'
             type="checkbox" 
             value={type} 
             id={type}

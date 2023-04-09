@@ -1,11 +1,16 @@
 .pokemonsContainer {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .title {
 
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.noPokemon {
+    text-align: center;
 }
 
 .pokemon {
