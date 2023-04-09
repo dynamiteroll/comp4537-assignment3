@@ -11,6 +11,11 @@
 
 .noPokemon {
     text-align: center;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    background-color: #f5f5f5;
 }
 
 .pokemon {
@@ -23,12 +28,17 @@
     border: 1px solid black;
     border-radius: 1rem;
     width: 10rem;
-    height: 10rem;
+    height: 15rem;
     background-color: #f5f5f5;
 }
 
 .image {
-    width: 5rem;
-    height: 5rem;
+    max-width: 5rem;
+    max-height: 5rem;
 
+}
+
+.pokemonInfo > ul {
+    padding: 0;
+    list-style-type: none;
 }

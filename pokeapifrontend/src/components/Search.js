@@ -29,6 +29,7 @@ export default function Search({setSelectedTypeArray, typeSelectedArray, setPage
 
   return (
     <div className="searchContainer">
+        <h3>Search Pokemon By Type:</h3>
        {
          types.map(type => <div key={type}>
             <input 
@@ -36,7 +37,6 @@ export default function Search({setSelectedTypeArray, typeSelectedArray, setPage
             type="checkbox" 
             value={type} 
             id={type}
-
             onChange={handleClick} 
             />
             <label htmlFor={type}>{type}</label>

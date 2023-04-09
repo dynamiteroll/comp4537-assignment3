@@ -44,14 +44,18 @@ function FilterPokemons({typeSelectedArray, setPageNo, pageNo}) {
         <div className='pokemonsContainer'>
             {
                 pokemonPage.map((pokemon, index) => {
-                    if (typeSelectedArray.every(type => pokemon.type.includes(type))) {
-                        return (
-                            <div className="pokemon"  key={index}>
+                    return (
+                        <div className="pokemon"  key={index}>
                             <img className='image' src={`https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${setNum(pokemon.id)}.png`} alt={pokemon.name.english} />
-                            <p>{pokemon.name.english}</p>
+                            <div className='pokemonInfo'>
+                                <h3>{pokemon.name.english}</h3>
+                                <h4>Type:</h4>
+                                <ul>
+                                    {pokemon.type.map((type => <li ley={type}>{type}</li>))}
+                                </ul>
                             </div>
-                        )
-                    }
+                        </div>
+                    )
                 })
             }
                 
