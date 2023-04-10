@@ -75,6 +75,7 @@ function Login() {
           <div className='mainContainer'>
             <h1>Welcome to Dated Dex.com</h1>
             <h3>A PokeDex website that is so outdated the most recent Pokemon is from Gen 7.</h3>
+            <h3>Api from https://github.com/fanzeyi/pokemon.json</h3>
           </div>
           <form onSubmit={handleSubmit}>
               <span> Login </span>
