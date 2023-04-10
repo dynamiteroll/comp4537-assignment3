@@ -1,8 +1,8 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Dashboard from './Dashboard';
-import {Routes, Route} from "react-router-dom";
+
 
 import Search from "./Search";
 import FilterPokemons from "./FilterPokemons";
@@ -18,6 +18,18 @@ function Login() {
   const [user, setUser] = useState({});
   const [accessToken, setAccessToken] = useState('');
   const [refreshToken, setRefreshToken] = useState('');
+
+
+  useEffect(() => {
+    const savedToken = localStorage.getItem('auth-token-access');
+    const savedUser = JSON.parse(localStorage.getItem('user'));
+    if (savedToken && savedUser) {
+      setAccessToken(savedToken);
+      setUser(savedUser);
+    }
+  }, []);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -25,60 +37,26 @@ function Login() {
       setUser(res.data);
       setAccessToken(res.headers['auth-token-access']);
       setRefreshToken(res.headers['auth-token-refresh']);
+      localStorage.setItem('auth-token-access', res.headers['auth-token-access']);
+      localStorage.setItem('user', JSON.stringify(res.data));
+
+
     } catch (err) {
       console.log(err);
     }
   }
 
   return (
-    // <div>
-    //   {user?.username ? (
-    //     <>
-    //       <h1>Welcome {user.username}</h1>
-    //       <Dashboard accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} />
-    //     </>
-    //   ) : (
-        // <form onSubmit={handleSubmit}>
-        //   <span> Admin Login </span>
-        //   <br />
-        //   <input
-        //     type="text"
-        //     placeholder="username"
-        //     onChange={(e) => setUsername(e.target.value)}
-        //   />
-        //   <br />
-        //   <input
-        //     type="password"
-        //     placeholder="password"
-        //     onChange={(e) => setPassword(e.target.value)}
-        //   />
-        //   <br />
-        //   <button type="submit">
-        //     Login
-        //   </button>
-        // </form>
-    //   )}
-    // </div>
+
 
     <div>
         {
         (accessToken && user?.role === "admin") && 
-            // <Routes>
-            //     <Route path="/dashboard" element={<Dashboard accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} />}/>
-            // </Routes>
             <Dashboard accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} />
         }
         {
             (accessToken && user?.role === "user") && 
             
-            // <Routes>
-            //     <Route path="/pokedex" element={
-            //         <>
-            //           <Search setSelectedTypeArray={setSelectedTypeArray} typeSelectedArray={typeSelectedArray} setPageNo={setPageNo}/>
-            //           <FilterPokemons typeSelectedArray={typeSelectedArray} setPageNo={setPageNo} pageNo={pageNo}/>
-            //         </>
-            //     }/>
-            // </Routes>
             <>
                 <Search setSelectedTypeArray={setSelectedTypeArray} typeSelectedArray={typeSelectedArray} setPageNo={setPageNo}/>
                 <FilterPokemons typeSelectedArray={typeSelectedArray} setPageNo={setPageNo} pageNo={pageNo}/>

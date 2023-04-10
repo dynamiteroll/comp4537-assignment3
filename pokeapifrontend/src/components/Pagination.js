@@ -20,7 +20,6 @@ export default function Pagination({pokemons, setPageNo, pageNo}) {
 
     const handleNext = () => {
         setPageNo(pageNo + 1);
-        console.log("pgcnt" + pageCount);
     }
 
 
