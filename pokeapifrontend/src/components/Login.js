@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Dashboard from './Dashboard';
-
-
+import "../styles/Login.css"
 import Search from "./Search";
 import FilterPokemons from "./FilterPokemons";
+import Navbar from './Navbar';
 
 function Login() {
 
@@ -43,6 +43,7 @@ function Login() {
 
     } catch (err) {
       console.log(err);
+      alert(err);
     }
   }
 
@@ -52,38 +53,49 @@ function Login() {
     <div>
         {
         (accessToken && user?.role === "admin") && 
-            <Dashboard accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} />
+            <>
+              <Navbar user={user}/>
+              <Dashboard accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} />
+            </>
         }
         {
             (accessToken && user?.role === "user") && 
             
-            <>
+            <>  
+                <Navbar user={user}/>
                 <Search setSelectedTypeArray={setSelectedTypeArray} typeSelectedArray={typeSelectedArray} setPageNo={setPageNo}/>
                 <FilterPokemons typeSelectedArray={typeSelectedArray} setPageNo={setPageNo} pageNo={pageNo}/>
             </>
         }
         {
         (!accessToken) && 
-
-        <form onSubmit={handleSubmit}>
-            <span> Admin Login </span>
-            <br />
-            <input
-            type="text"
-            placeholder="username"
-            onChange={(e) => setUsername(e.target.value)}
-            />
-            <br />
-            <input
-            type="password"
-            placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
-            />
-            <br />
-            <button type="submit">
-            Login
-            </button>
-        </form>
+        
+        <>
+          <Navbar user={user}/>
+          <div className='mainContainer'>
+            <h1>Welcome to Dated Dex.com</h1>
+            <h3>A PokeDex website that is so outdated the most recent Pokemon is from Gen 7.</h3>
+          </div>
+          <form onSubmit={handleSubmit}>
+              <span> Login </span>
+              <br />
+              <input
+              type="text"
+              placeholder="username"
+              onChange={(e) => setUsername(e.target.value)}
+              />
+              <br />
+              <input
+              type="password"
+              placeholder="password"
+              onChange={(e) => setPassword(e.target.value)}
+              />
+              <br />
+              <button type="submit">
+              Login
+              </button>
+          </form>
+        </>
         }
     </div>
   )

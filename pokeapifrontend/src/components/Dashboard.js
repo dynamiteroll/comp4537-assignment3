@@ -1,6 +1,6 @@
 import React from 'react'
 import Report from './Report';
-import Navbar from './Navbar';
+import "../styles/Dashboard.css"
 
 import {
   Routes,
@@ -11,7 +11,6 @@ import {
 function Dashboard({ accessToken, setAccessToken, refreshToken }) {
   return (
     <div>
-      <Navbar/>
       <h1>
         Dashboard
       </h1>

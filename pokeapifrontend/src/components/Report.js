@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
+import "../styles/Report.css"
 
 
 
@@ -56,7 +57,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken }) {
 
   return (
     <>
-      <div>Report {id && id}</div>
+      <div className='report'>Report {id && id}</div>
       <div> {reportTable && reportTable}</div>
     </>
   )

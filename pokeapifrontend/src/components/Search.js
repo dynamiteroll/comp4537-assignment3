@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 import "../styles/Search.css"
-import Navbar from './Navbar';
 
 export default function Search({setSelectedTypeArray, typeSelectedArray, setPageNo}) {
 
@@ -31,7 +30,6 @@ export default function Search({setSelectedTypeArray, typeSelectedArray, setPage
 
   return (
     <>
-        <Navbar />
         <div className="searchContainer">
             <h3>Search Pokemon By Type:</h3>
         {
